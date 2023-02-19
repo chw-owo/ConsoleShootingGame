@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{d765ee23-3624-4572-8e9d-e50466624232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{f6ac36d7-fc47-4387-b4cb-1e98a7825aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{e9cf517f-7a53-449e-a71f-79894e05dac6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Console">
+      <UniqueIdentifier>{aa685c39-9f0e-47d8-91cd-d9ea21f723ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\File">
+      <UniqueIdentifier>{54206204-1057-41db-aa3d-099799921754}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Clear.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Load.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Over.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Utils\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Utils\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="FileFunction.cpp">
+      <Filter>Utils\File</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilFileData.cpp">
+      <Filter>Utils\File</Filter>
+    </ClCompile>
+    <ClCompile Include="Extern.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Clear.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Over.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Utils\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Utils\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFunction.h">
+      <Filter>Utils\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilFileData.h">
+      <Filter>Utils\File</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
