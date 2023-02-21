@@ -5,5 +5,5 @@
 
 void rd_BufferFlip(void);
 void rd_BufferClear(void);
-void rd_SpriteDraw(int32 iX, int32 iY, char chSprite);
-void rd_DataToBuffer(char* data, int32 size);
+void rd_SpriteDraw(const int32& iX, const int32& iY, const char& chSprite);
+void rd_DataToBuffer(const char* data);

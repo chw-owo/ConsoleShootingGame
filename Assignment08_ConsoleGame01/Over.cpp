@@ -6,7 +6,6 @@
 
 bool overInitFlag;
 char overData[DATA_SIZE];
-int32 overDataSize;
 
 void UpdateOver()
 {
@@ -19,11 +18,10 @@ void UpdateOver()
 		LoadOverData();
 		overInitFlag = true;
 	}
-		
 
 	// render section
 	rd_BufferClear();
-	rd_DataToBuffer(overData, overDataSize);
+	rd_DataToBuffer(overData);
 	rd_BufferFlip();
 }
 
@@ -41,5 +39,6 @@ void GetKeyOver()
 
 void LoadOverData()
 {
-	LoadOriginData(sceneFileRoot[OVER], overData, overDataSize);
+	int32 tmpSize;
+	LoadOriginData(sceneFileRoot[OVER], overData, tmpSize);
 }

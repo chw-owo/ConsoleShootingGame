@@ -16,50 +16,50 @@ enum GAMEDATA
 
 struct Player
 {
-	bool bDead = false;
-	char icon[ICON_SIZE];
-	int32 iX = dfSCREEN_WIDTH / 2;
-	int32 iY = (dfSCREEN_HEIGHT / 4) * 3;
-	int32 iTotalHp;
-	int32 iHp;
+	bool _bDead = false;
+	char _chIcon[ICON_SIZE] = { '0', };
+	int32 _iX = dfSCREEN_WIDTH / 2;
+	int32 _iY = (dfSCREEN_HEIGHT / 4) * 3;
+	int32 _iTotalHp = 0;
+	int32 _iHp = 0;
 };
 
 struct Bullet
 {
-	bool bDead = false;
-	char icon[ICON_SIZE];
-	int32 iX = -1;
-	int32 iY = -1;
-	int32 iAttack;
-	float iSpeed;
+	bool _bDead = false;
+	char _chIcon[ICON_SIZE] = { '0', };
+	int32 _iX = -1;
+	int32 _iY = -1;
+	int32 _iAttack = 0;
+	float _iSpeed = 0;
 
 };
 
 struct Enemy
 {
-	bool bDead = false;
-	int32 iX;
-	int32 iY;
-	int32 hp;
+	bool _bDead = false;
+	int32 _iX = 0;
+	int32 _iY = 0;
+	int32 _iHp = 0;
 };
 
 struct EnemyData
 {
-	char name[NAME_SIZE];
-	char icon[ICON_SIZE];
-	Enemy* enemies;
-	int32 totalHp;
-	int32 max;
-	int32 cnt;
+	char _chName[NAME_SIZE] = { '0', };
+	char _chIcon[ICON_SIZE] = { '0', };
+	Enemy* _enemies;
+	int32 _iTotalHp = 0;
+	int32 _iMax = 0;
+	int32 _iCnt = 0;
 };
 
 extern Player player;
 extern Bullet bullets[BULLET_CNT];
+
 extern char posData[DATA_SIZE];
 extern EnemyData* enemyData;
-
-extern int32 csSize;
 extern int32 enemyDataCnt;
+
 extern char strStage[INFO_SIZE];
 
 // Main

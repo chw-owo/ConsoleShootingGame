@@ -3,10 +3,10 @@
 #include "Extern.h"
 #include "UtilFileData.h"
 #include <Windows.h>
+#include <iostream>
 
 bool clearInitFlag = false;
 char clearData[DATA_SIZE];
-int32 clearDataSize;
 
 void UpdateClear()
 {
@@ -22,9 +22,8 @@ void UpdateClear()
 		
 	// render section
 	rd_BufferClear();
-	rd_DataToBuffer(clearData, clearDataSize);
+	rd_DataToBuffer(clearData);
 	rd_BufferFlip();
-	
 }
 
 void GetKeyClear()
@@ -52,10 +51,12 @@ void GetKeyClear()
 
 void InitialClear()
 {
-	int32 resultSize;
+	int32 tmpSize;
 	char clearDataRoot[ROOT_LEN];
 	LoadTokenedData(sceneFileRoot[CLEAR], clearDataRoot,
-		resultSize, GET_ROOT_ONE, g_Stage);
+		tmpSize, GET_ROOT_ONE, g_Stage);
 
-	LoadOriginData(clearDataRoot, clearData, clearDataSize);
+	memset(clearData, ' ', DATA_SIZE);
+	LoadOriginData(clearDataRoot, clearData, tmpSize);
+
 }

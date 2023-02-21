@@ -2,19 +2,7 @@
 #include "FileFunction.h"
 #include <iostream>
 
-#define SEP_LEN 16
-char seps[][SEP_LEN] =
-{
-	"\n",
-	"\n",
-	"\n",
-	"\n",
-	"\n",
-	"\n",
-};
-
-
-void SetStageData(int32 stage)
+void SetStageData(const int32& stage)
 {
 	g_Stage = stage;
 
@@ -26,7 +14,7 @@ void SetStageData(int32 stage)
 	CloseFile(&pFile);
 }
 
-void LoadOriginData(char* fileName, void* output, int32& resultSize)
+void LoadOriginData(const char* fileName, void* output, int32& resultSize)
 {
 	FILE* pFile;
 	OpenFile(fileName, &pFile, "r");
@@ -34,10 +22,10 @@ void LoadOriginData(char* fileName, void* output, int32& resultSize)
 	ReadFile(&pFile, resultSize, static_cast<char*>(output));
 	CloseFile(&pFile);
 	return;
-
 }
-void LoadTokenedData(char* fileName, void* output, int32& resultSize, 
-							 LOAD_FLAG flag, int32 idx)
+
+void LoadTokenedData(const char* fileName, void* output, int32& resultSize, 
+						const LOAD_FLAG& flag, const int32& idx)
 {
 	FILE* pFile;
 	char* fileData;
@@ -48,33 +36,35 @@ void LoadTokenedData(char* fileName, void* output, int32& resultSize,
 	ReadFile(&pFile, resultSize, fileData);
 	CloseFile(&pFile);
 
+	char sep[] = { "\n" };
+
 	switch (flag)
 	{
 		case GET_ROOT_ALL:
-			TokenizeRootAll(fileData, seps[flag], resultSize, 
+			TokenizeRootAll(fileData, sep, resultSize,
 								static_cast<char(*)[ROOT_LEN]>(output));
 			break;
 
 		case GET_ROOT_ONE:
-			TokenizeRootOne(fileData, seps[flag], idx, 
+			TokenizeRootOne(fileData, sep, idx,
 								static_cast<char*>(output));
 			break;
 
 		case GET_GAMEDATA:
-			TokenizeGameData(fileData, seps[flag], resultSize,
+			TokenizeGameData(fileData, sep, resultSize,
 				static_cast<char(*)[ROOT_CNT][ROOT_LEN]>(output));
 			break;
 
 		case GET_DATA_ENEMY:
-			TokenizeEnemyData(fileData, seps[flag], static_cast<EnemyData*>(output));
+			TokenizeEnemyData(fileData, sep, static_cast<EnemyData*>(output));
 			break;
 
 		case GET_DATA_PLAYER:
-			TokenizePlayerData(fileData, seps[flag], static_cast<Player*>(output));
+			TokenizePlayerData(fileData, sep, static_cast<Player*>(output));
 			break;
 
 		case GET_DATA_BULLET:
-			TokenizeBulletData(fileData, seps[flag], static_cast<Bullet*>(output));
+			TokenizeBulletData(fileData, sep, static_cast<Bullet*>(output));
 			break;
 		
 
@@ -85,7 +75,7 @@ void LoadTokenedData(char* fileName, void* output, int32& resultSize,
 	free(fileData);
 }
 
-void TokenizeGameData(char* fileData, char sep[], int32& fileNum, char output[][ROOT_CNT][ROOT_LEN])
+void TokenizeGameData(char* fileData, const char* sep, int32& fileNum, char output[][ROOT_CNT][ROOT_LEN])
 {
 	int32 idx1 = 0;
 	int32 idx2 = 0;
@@ -132,7 +122,7 @@ void TokenizeGameData(char* fileData, char sep[], int32& fileNum, char output[][
 	fileNum = idx2;
 }
 
-void TokenizeRootOne(char* fileData, char sep[], int32 idx, char* output)
+void TokenizeRootOne(char* fileData, const char* sep, const int32& idx, char output[])
 {
 	int32 cnt = 0;
 	char* tok = NULL;
@@ -147,7 +137,7 @@ void TokenizeRootOne(char* fileData, char sep[], int32 idx, char* output)
 	strcpy_s(output, ROOT_LEN, tok);
 }
 
-void TokenizeRootAll(char* fileData, char sep[], int32& fileNum, char output[][ROOT_LEN])
+void TokenizeRootAll(char* fileData, const char* sep, int32& fileNum, char output[][ROOT_LEN])
 {
 	int32 idx = 0;
 	char* tok = NULL;
@@ -164,53 +154,52 @@ void TokenizeRootAll(char* fileData, char sep[], int32& fileNum, char output[][R
 }
 
 
-void TokenizeEnemyData(char* fileData, char sep[], EnemyData* output)
+void TokenizeEnemyData(char* fileData, const char* sep, EnemyData* output)
 {
 	int32 idx = 0;
 	char* tok = NULL;
 	char* next = NULL;
 
 	tok = strtok_s(fileData, sep, &next);
-	strcpy_s(output->name, NAME_SIZE, tok);
+	strcpy_s(output->_chName, NAME_SIZE, tok);
 
 	tok = strtok_s(NULL, sep, &next);
-	strcpy_s(output->icon, ICON_SIZE, tok);
+	strcpy_s(output->_chIcon, ICON_SIZE, tok);
 
 	tok = strtok_s(NULL, sep, &next);
-	output-> totalHp = atoi(tok);
-	output-> cnt = 0;
+	output-> _iTotalHp = atoi(tok);
+	output-> _iCnt = 0;
 }
 
-void TokenizePlayerData(char* fileData, char sep[], Player* output)
+void TokenizePlayerData(char* fileData, const char* sep, Player* output)
 {
 	int32 idx = 0;
 	char* tok = NULL;
 	char* next = NULL;
 
 	tok = strtok_s(fileData, sep, &next);
-	strcpy_s(output->icon, ICON_SIZE, tok);
+	strcpy_s(output->_chIcon, ICON_SIZE, tok);
 
 	tok = strtok_s(NULL, sep, &next);
-	output->iTotalHp = atoi(tok);
-	output->iHp = atoi(tok);
+	output->_iTotalHp = atoi(tok);
+	output->_iHp = atoi(tok);
 }
 
-void TokenizeBulletData(char* fileData, char sep[], Bullet* output)
+void TokenizeBulletData(char* fileData, const char* sep, Bullet* output)
 {
 	int32 idx = 0;
 	char* tok = NULL;
 	char* next = NULL;
-
 	tok = strtok_s(fileData, sep, &next);
 
 	for(int i = 0; i < BULLET_CNT; i++)
-		strcpy_s((output + i)->icon, ICON_SIZE, tok);
+		strcpy_s((output + i)->_chIcon, ICON_SIZE, tok);
 
 	tok = strtok_s(NULL, sep, &next);
 	for (int i = 0; i < BULLET_CNT; i++)
-		(output + i)->iAttack = atoi(tok);
+		(output + i)->_iAttack = atoi(tok);
 
 	tok = strtok_s(NULL, sep, &next);
 	for (int i = 0; i < BULLET_CNT; i++)
-		(output + i)->iSpeed = atof(tok);
+		(output + i)->_iSpeed = atof(tok);
 }

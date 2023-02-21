@@ -2,7 +2,7 @@
 #include "Extern.h"
 
 // File IO
-void OpenFile(char filename[], FILE** pFile, const char* mode)
+void OpenFile(const char* filename, FILE** pFile, const char* mode)
 {
 	errno_t ret = fopen_s(pFile, filename, mode);
 
@@ -25,7 +25,7 @@ void CloseFile(FILE** pFile)
 
 }
 
-void ReadFile(FILE** pFile, int32 size, char data[])
+void ReadFile(FILE** pFile, const int32& size, char* data)
 {
 	fread(data, 1, size, *pFile);
 	errno_t ret = ferror(*pFile);
@@ -37,7 +37,7 @@ void ReadFile(FILE** pFile, int32 size, char data[])
 
 }
 
-void WriteFile(FILE** pFile, int32 size, char data[])
+void WriteFile(FILE** pFile, const int32& size, char* data)
 {
 	fwrite(data, size, 1, *pFile);
 	errno_t ret = ferror(*pFile);

@@ -12,7 +12,7 @@
 #include "Types.h"
 
 void cs_Initial(void);
-void cs_MoveCursor(int32 iPosX, int32 iPosY);
+void cs_MoveCursor(const int32& iPosX, const int32& iPosY);
 void cs_ClearScreen(void);
 
 

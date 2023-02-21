@@ -5,20 +5,23 @@
 
 void InitialSceneData()
 {
-	int32 resultSize = 0;
-	LoadTokenedData(rootData, sceneFileRoot, resultSize, GET_ROOT_ALL);
+	int32 tmpSize;
+	LoadTokenedData(rootData, sceneFileRoot, tmpSize, GET_ROOT_ALL);
 }
 
 void InitialStageData()
 {
-	int32 resultSize = 0;
+	int32 tmpSize;
 
 	char curStage[NUM_SIZE] = { '\0', };
-	LoadOriginData(playData, curStage, resultSize);
+	LoadOriginData(playData, curStage, tmpSize);
 	g_Stage = atoi(curStage);
 
 	char finalStageTmp[NUM_SIZE] = { '\0', };
-	LoadOriginData(playFinalData, finalStageTmp, resultSize);
+	LoadOriginData(playFinalData, finalStageTmp, tmpSize);
 	g_finalStage = atoi(finalStageTmp);
 }
+
+
+
 

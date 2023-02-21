@@ -9,6 +9,6 @@
 
 
 
-                             Go To Next Stage: Press Enter
-
+                          Save and Go To Next Stage: Press Enter
+  
                                       Exit: Press Esc

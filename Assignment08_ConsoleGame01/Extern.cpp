@@ -1,4 +1,5 @@
 #include "Extern.h"
+#include "Console.h"
 #include <iostream>
 
 bool g_exit = false;

@@ -32,7 +32,7 @@ void rd_BufferClear(void)
 
 // 버퍼의 특정 위치에 원하는 문자를 출력.
 // 입력 받은 X,Y 좌표에 아스키코드 하나를 출력한다. (버퍼에 그림)
-void rd_SpriteDraw(int32 iX, int32 iY, char chSprite)
+void rd_SpriteDraw(const int32& iX, const int32& iY, const char& chSprite)
 {
 	if (iX < 0 || iY < 0 || iX >= dfSCREEN_WIDTH - 1 || iY >= dfSCREEN_HEIGHT)
 		return;
@@ -40,12 +40,12 @@ void rd_SpriteDraw(int32 iX, int32 iY, char chSprite)
 	szScreenBuffer[iY][iX] = chSprite;
 }
 
-void rd_DataToBuffer(char* data, int32 size)
+void rd_DataToBuffer(const char* data)
 {
 	int32 iX = 0;
 	int32 iY = 0;
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < DATA_SIZE; i++)
 	{
 		if (*(data + i) == ' ')
 		{
@@ -63,3 +63,5 @@ void rd_DataToBuffer(char* data, int32 size)
 		}
 	}
 }
+
+

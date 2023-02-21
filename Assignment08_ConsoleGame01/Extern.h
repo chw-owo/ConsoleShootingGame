@@ -3,12 +3,13 @@
 
 #define ROOT_CNT 16
 #define ROOT_LEN 128
-#define DATA_SIZE 2048
 
 #define ICON_SIZE 8
 #define NUM_SIZE 8
 #define NAME_SIZE 8
 #define INFO_SIZE 16
+
+#define DATA_SIZE 2048
 
 enum SCENE
 {

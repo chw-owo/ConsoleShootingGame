@@ -9,10 +9,9 @@
 void UpdateLoad()
 {
 	// input section
-	GetKeyLoad();
+	//GetKeyLoad();
 
 	// logic section
-	//LoadLoadData();
 	LoadGameData();
 
 	// render section
@@ -23,20 +22,12 @@ void UpdateLoad()
 
 void GetKeyLoad()
 {
-	if (GetAsyncKeyState(VK_ESCAPE))
-	{
-		g_Scene = TITLE;
-	}
-}
-
-void LoadLoadData()
-{
-
+	
 }
 
 void LoadGameData()
 {
-	int32 resultSize = 0;
+	int32 resultSize;
 
 	// Load Current Stage Data by StageInfo.txt
 	char stageDataRoot[ROOT_LEN];
@@ -50,7 +41,7 @@ void LoadGameData()
 	enemyDataCnt = resultSize;
 
 	// Load Pos Data
-	LoadOriginData(gameDataRoot[DATA_POS][0], posData, csSize);
+	LoadOriginData(gameDataRoot[DATA_POS][0], posData, resultSize);
 
 	// Load Player Data
 	LoadTokenedData(gameDataRoot[DATA_PLAYER][0], &player,
@@ -70,7 +61,7 @@ void LoadGameData()
 		LoadTokenedData(gameDataRoot[DATA_ENEMY][i], enemyData + i,
 			resultSize, GET_DATA_ENEMY);
 
-		(enemyData + i)->max = atoi(gameDataRoot[DATA_ENEMY_NUM][i]);
+		(enemyData + i)->_iMax = atoi(gameDataRoot[DATA_ENEMY_NUM][i]);
 	}
 	
 	InitialEnemy();
@@ -87,15 +78,15 @@ void InitialEnemy()
 
 	for (int i = 0; i < enemyDataCnt; i++)
 	{
-		enemyMax = (enemyData + i)->max;
-		(enemyData + i)->enemies
+		enemyMax = (enemyData + i)->_iMax;
+		(enemyData + i)->_enemies
 			= static_cast<Enemy*>(malloc(sizeof(Enemy) * enemyMax));
 	}
 
 	EnemyData* tmp;
 	Enemy* enemy;
 
-	for (int i = 0; i < csSize; i++)
+	for (int i = 0; i < DATA_SIZE; i++)
 	{
 		if (*(posData + i) == ' ')
 		{
@@ -112,17 +103,17 @@ void InitialEnemy()
 
 			for (int j = 0; j < enemyDataCnt; j++)
 			{
-				if (*(posData + i) == *(enemyData + j)->name)
+				if (*(posData + i) == *(enemyData + j)->_chName)
 				{
 					tmp = enemyData + j;
-					enemy = (tmp->enemies) + (tmp->cnt);
+					enemy = (tmp->_enemies) + (tmp->_iCnt);
 
-					enemy->bDead = false;
-					enemy->iX = iX;
-					enemy->iY = iY;
-					enemy->hp = tmp->totalHp;
+					enemy->_bDead = false;
+					enemy->_iX = iX;
+					enemy->_iY = iY;
+					enemy->_iHp = tmp->_iTotalHp;
 
-					tmp->cnt++;
+					tmp->_iCnt++;
 				}
 			}
 		}

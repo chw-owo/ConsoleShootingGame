@@ -9,6 +9,6 @@
 
 
 
-                                 Go To Title: Press Enter
+                            Save and Go To Title: Press Enter
 
                                       Exit: Press Esc

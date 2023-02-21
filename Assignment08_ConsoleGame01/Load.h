@@ -1,12 +1,12 @@
 #pragma once
-#include "Types.h"
 
+// Update
 void UpdateLoad();
-
 void GetKeyLoad();
 
-void LoadLoadData();
+// Load Data
 void LoadGameData();
 
+// Process Data
 void ConvertStageToString();
 void InitialEnemy();

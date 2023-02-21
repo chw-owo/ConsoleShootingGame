@@ -6,7 +6,6 @@
 
 bool titleInitFlag = false;
 char titleData[DATA_SIZE];
-int32 titleDataSize;
 
 void UpdateTitle()
 {
@@ -22,7 +21,7 @@ void UpdateTitle()
 
 	// render section
 	rd_BufferClear();
-	rd_DataToBuffer(titleData, titleDataSize);
+	rd_DataToBuffer(titleData);
 	rd_BufferFlip();
 }
 
@@ -52,5 +51,6 @@ void GetKeyTitle()
 
 void LoadTitleData()
 {
-	LoadOriginData(sceneFileRoot[TITLE], titleData, titleDataSize);
+	int32 tmpSize;
+	LoadOriginData(sceneFileRoot[TITLE], titleData, tmpSize);
 }
